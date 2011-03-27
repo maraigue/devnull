@@ -53,6 +53,7 @@ end
     "README.rdoc",
     "Rakefile",
     "VERSION",
+    "devnull.gemspec",
     "lib/devnull.rb",
     "spec/devnull_spec.rb",
     "spec/spec_helper.rb"

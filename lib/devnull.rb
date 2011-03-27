@@ -1,11 +1,35 @@
 # Ruby implementation of null file (like /dev/null on Un*x, NUL on Windows)
 # (C) 2010- H.Hiro(Maraigue) main@hhiro.net
-#
-# DevNull works like an IO object. For example:
-# dn = DevNull.new
+# 
+# DevNull behaves a null file, and works like an IO object. For example:
+# 
+# <pre>dn = DevNull.new
 # dn.puts "foo" # => nil (do nothing)
 # dn.gets # => nil
-# dn.read # => ""
+# dn.read # => ""</pre>
+# 
+# The library may be a good solution if you would like to switch whether an input/output file is needed. For example:
+# 
+# <pre>def some_process(arg, logfile = nil)
+#   # You may set an IO object as 'logfile', and logs are written to the file.
+#   
+#   result = process1(arg)
+#   logfile.puts result if logfile
+#   
+#   result = process2(arg)
+#   logfile.puts result if logfile
+#   
+#   result = process3(arg)
+#   logfile.puts result if logfile
+# end</pre>
+# 
+# can be rewritten as follows:
+# 
+# <pre>def some_process(arg, logfile = DevNull.new)
+#   logfile.puts process1(arg)
+#   logfile.puts process2(arg)
+#   logfile.puts process3(arg)
+# end</pre>
 
 require "enumerator"
 
@@ -14,7 +38,9 @@ class DevNull
     # do nothing
   end
   
+  # --
   # methods treated as being not implemented
+  # ++
   def fileno; raise NotImplementedError; end
   alias :to_i :fileno
   def fsync; raise NotImplementedError; end
@@ -23,7 +49,9 @@ class DevNull
   def fcntl(arg1, arg2); raise NotImplementedError; end
   def ioctl(arg1, arg2); raise NotImplementedError; end
   
+  # --
   # methods that do nothing
+  # ++
   def close; end
   def close_read; end
   def close_write; end
@@ -34,7 +62,9 @@ class DevNull
   def ungetbyte(arg); end
   def ungetc(arg); end
   
+  # --
   # methods that do nothing and returns something
+  # ++
   def getc; nil; end
   def getbyte; nil; end
   def gets(arg1=nil, arg2=nil); nil; end

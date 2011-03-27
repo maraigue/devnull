@@ -1,6 +1,34 @@
 = devnull
 
-Description goes here.
+DevNull behaves a null file, and works like an IO object. For example:
+
+ dn = DevNull.new
+ dn.puts "foo" # => nil (do nothing)
+ dn.gets # => nil
+ dn.read # => ""
+
+The library may be a good solution if you would like to switch whether an input/output file is needed. For example:
+
+ def some_process(arg, logfile = nil)
+   # You may set an IO object as 'logfile', and logs are written to the file.
+   
+   result = process1(arg)
+   logfile.puts result if logfile
+   
+   result = process2(arg)
+   logfile.puts result if logfile
+   
+   result = process3(arg)
+   logfile.puts result if logfile
+ end
+
+can be rewritten as follows:
+
+ def some_process(arg, logfile = DevNull.new)
+   logfile.puts process1(arg)
+   logfile.puts process2(arg)
+   logfile.puts process3(arg)
+ end
 
 == Contributing to devnull
  
