@@ -15,10 +15,40 @@ Jeweler::Tasks.new do |gem|
   gem.name = "devnull"
   gem.homepage = "http://github.com/maraigue/devnull"
   gem.license = "MIT"
-  gem.summary = %Q{TODO: one-line summary of your gem}
-  gem.description = %Q{TODO: longer description of your gem}
+  gem.summary = %Q{Ruby implementation of null file (like /dev/null on Un*x, NUL on Windows)}
+  gem.description = <<DESC
+DevNull behaves a null file, and works like an IO object. For example:
+
+dn = DevNull.new
+dn.puts "foo" # => nil (do nothing)
+dn.gets # => nil
+dn.read # => ""
+
+The library may be a good solution if you would like to switch whether an input/output file is needed. For example:
+
+def some_process(arg, logfile = nil)
+  # You may set an IO object as 'logfile', and logs are written to the file.
+  
+  result = process1(arg)
+  logfile.puts result if logfile
+  
+  result = process2(arg)
+  logfile.puts result if logfile
+  
+  result = process3(arg)
+  logfile.puts result if logfile
+end
+
+can be rewritten as follows:
+
+def some_process(arg, logfile = DevNull.new)
+  logfile.puts process1(arg)
+  logfile.puts process2(arg)
+  logfile.puts process3(arg)
+end
+DESC
   gem.email = "main@hhiro.net"
-  gem.authors = ["maraigue"]
+  gem.authors = ["H.Hiro (Maraigue)"]
   # Include your dependencies below. Runtime dependencies are required when using your gem,
   # and development dependencies are only needed for development (ie running rake tasks, tests, etc)
   #  gem.add_runtime_dependency 'jabber4r', '> 0.1'
