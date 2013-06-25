@@ -58,7 +58,6 @@ class DevNull
   def print(*args); end
   def printf(arg1, *other_args); end
   def puts(*args); end
-  def syswrite(*args); end
   def ungetbyte(arg); end
   def ungetc(arg); end
   
