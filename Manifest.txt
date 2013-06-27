@@ -1,0 +1,5 @@
+History.txt
+README.txt
+lib/devnull.rb
+spec/devnull_spec.rb
+spec/spec_helper.rb

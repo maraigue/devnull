@@ -1,0 +1,8 @@
+=== 0.1.0 / 2011-03-28
+
+* First release
+
+=== 0.1.1 / 2013-06-27
+
+* Fixed duplicated definition of DevNull#syswrite (Thanks Andrew Grimm!)
+

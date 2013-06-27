@@ -32,6 +32,7 @@
 # end</pre>
 
 require "enumerator"
+VERSION = "0.1.1"
 
 class DevNull
   def initialize

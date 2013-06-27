@@ -1,80 +1,24 @@
+# -*- ruby -*-
+
 require 'rubygems'
-require 'bundler'
-begin
-  Bundler.setup(:default, :development)
-rescue Bundler::BundlerError => e
-  $stderr.puts e.message
-  $stderr.puts "Run `bundle install` to install missing gems"
-  exit e.status_code
-end
-require 'rake'
+require 'hoe'
 
-require 'jeweler'
-Jeweler::Tasks.new do |gem|
-  # gem is a Gem::Specification... see http://docs.rubygems.org/read/chapter/20 for more options
-  gem.name = "devnull"
-  gem.homepage = "http://github.com/maraigue/devnull"
-  gem.license = "MIT"
-  gem.summary = %Q{Ruby implementation of null file (like /dev/null on Un*x, NUL on Windows)}
-  gem.description = <<DESC
-DevNull behaves a null file, and works like an IO object. For example:
+# Hoe.plugin :compiler
+# Hoe.plugin :gem_prelude_sucks
+# Hoe.plugin :inline
+# Hoe.plugin :minitest
+# Hoe.plugin :racc
+# Hoe.plugin :rcov
+# Hoe.plugin :rubyforge
 
-dn = DevNull.new
-dn.puts "foo" # => nil (do nothing)
-dn.gets # => nil
-dn.read # => ""
+Hoe.spec 'devnull' do
+  # HEY! If you fill these out in ~/.hoe_template/Rakefile.erb then
+  # you'll never have to touch them again!
+  # (delete this comment too, of course)
 
-The library may be a good solution if you would like to switch whether an input/output file is needed. For example:
+  developer('H.Hiro (maraigue)', 'main@hhiro.net')
 
-def some_process(arg, logfile = nil)
-  # You may set an IO object as 'logfile', and logs are written to the file.
-  
-  result = process1(arg)
-  logfile.puts result if logfile
-  
-  result = process2(arg)
-  logfile.puts result if logfile
-  
-  result = process3(arg)
-  logfile.puts result if logfile
+  # self.rubyforge_name = 'devnullx' # if different than 'devnull'
 end
 
-can be rewritten as follows:
-
-def some_process(arg, logfile = DevNull.new)
-  logfile.puts process1(arg)
-  logfile.puts process2(arg)
-  logfile.puts process3(arg)
-end
-DESC
-  gem.email = "main@hhiro.net"
-  gem.authors = ["H.Hiro (Maraigue)"]
-  # Include your dependencies below. Runtime dependencies are required when using your gem,
-  # and development dependencies are only needed for development (ie running rake tasks, tests, etc)
-  #  gem.add_runtime_dependency 'jabber4r', '> 0.1'
-  #  gem.add_development_dependency 'rspec', '> 1.2.3'
-end
-Jeweler::RubygemsDotOrgTasks.new
-
-require 'rspec/core'
-require 'rspec/core/rake_task'
-RSpec::Core::RakeTask.new(:spec) do |spec|
-  spec.pattern = FileList['spec/**/*_spec.rb']
-end
-
-RSpec::Core::RakeTask.new(:rcov) do |spec|
-  spec.pattern = 'spec/**/*_spec.rb'
-  spec.rcov = true
-end
-
-task :default => :spec
-
-require 'rake/rdoctask'
-Rake::RDocTask.new do |rdoc|
-  version = File.exist?('VERSION') ? File.read('VERSION') : ""
-
-  rdoc.rdoc_dir = 'rdoc'
-  rdoc.title = "devnull #{version}"
-  rdoc.rdoc_files.include('README*')
-  rdoc.rdoc_files.include('lib/**/*.rb')
-end
+# vim: syntax=ruby

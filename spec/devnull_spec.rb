@@ -53,7 +53,7 @@ describe DevNull do
     it "should return an Enumerator for Devnull##{method_name}" do
       # First, check whether the method returns an Enumerator.
       enum = eval("@null.#{method_name}")
-      enum.should be_instance_of(Enumerable::Enumerator)
+      enum.should be_instance_of(Enumerator)
       # Then, check whether the Enumerator is empty.
       lambda{ enum.each{ raise RuntimeError } }.should_not raise_error
       lambda{ eval("@null.#{method_name} { raise RuntimeError }") }.should_not raise_error
