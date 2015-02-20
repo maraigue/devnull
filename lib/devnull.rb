@@ -32,9 +32,10 @@
 # end</pre>
 
 require "enumerator"
-VERSION = "0.1.1"
 
 class DevNull
+  VERSION = "0.1.2"
+  
   def initialize
     # do nothing
   end

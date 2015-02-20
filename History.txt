@@ -6,3 +6,10 @@
 
 * Fixed duplicated definition of DevNull#syswrite (Thanks Andrew Grimm!)
 
+https://github.com/maraigue/devnull/pull/1
+
+=== 0.1.2 / 2015-02-20
+
+* Moved the location of code 'VERSION = "A.B.C"' (Thanks Patrik Wenger!)
+
+https://github.com/maraigue/devnull/commit/5c8d40b7e03c07a96ae647bc302eec74abfc224d#commitcomment-8379713

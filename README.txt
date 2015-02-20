@@ -1,55 +1,56 @@
-devnull
-====================
+= devnull
+
+home  :: https://rubygems.org/gems/devnull
+code  :: https://github.com/maraigue/devnull
+
+== DESCRIPTION:
 
 Ruby implementation of null file (like /dev/null on Un*x, NUL on Windows)
 
-DESCRIPTION
---------------------
+== SYNOPSIS:
 
-DevNull behaves a null file, and works like an IO object. For example:
+DevNull instance works like an IO object. For example:
 
-    dn = DevNull.new
-    dn.puts "foo" # => nil (do nothing)
-    dn.gets # => nil
-    dn.read # => ""
+  dn = DevNull.new
+  dn.puts "foo" # => nil (do nothing)
+  dn.gets # => nil
+  dn.read # => ""
 
 The library may be a good solution if you would like to switch whether an input/output file is needed. For example:
 
-    def some_process(arg, logfile = nil)
-      # You may set an IO object as 'logfile'.
-      # If so, logs are written to the file.
-      
-      result = process1(arg)
-      logfile.puts result if logfile
-      
-      result = process2(arg)
-      logfile.puts result if logfile
-      
-      result = process3(arg)
-      logfile.puts result if logfile
-    end
+  def some_process(arg, logfile = nil)
+    # You may set an IO object as 'logfile'.
+    # If so, logs are written to the file.
+    
+    result = process1(arg)
+    logfile.puts result if logfile
+    
+    result = process2(arg)
+    logfile.puts result if logfile
+    
+    result = process3(arg)
+    logfile.puts result if logfile
+  end
 
 can be rewritten as follows:
 
-    def some_process(arg, logfile = DevNull.new)
-      logfile.puts process1(arg)
-      logfile.puts process2(arg)
-      logfile.puts process3(arg)
-    end
+  def some_process(arg, logfile = DevNull.new)
+    logfile.puts process1(arg)
+    logfile.puts process2(arg)
+    logfile.puts process3(arg)
+  end
 
-INSTALLATION
---------------------
+== INSTALLATION:
 
 Installed by RubyGems with the command (recommended):
 
-    $ gem install devnull
+  $ gem install devnull
 
 Or you can use it with downloading devnull.rb file and load it by `require "./devnull"`.
 
-For Developers
---------------------
+== DEVELOPERS:
 
-(auto-generation by [Hoe](https://rubygems.org/gems/hoe))
+(auto-generation by Hoe https://rubygems.org/gems/hoe)
 
 After checking out the source, run:
 
@@ -57,8 +58,7 @@ After checking out the source, run:
 
 This task will install any missing dependencies, run the tests/specs, and generate the RDoc.
 
-LICENSE
---------------------
+== LICENSE
 
 (The MIT License)
 
