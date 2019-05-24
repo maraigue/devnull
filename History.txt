@@ -13,3 +13,7 @@ https://github.com/maraigue/devnull/pull/1
 * Moved the location of code 'VERSION = "A.B.C"' (Thanks Patrik Wenger!)
 
 https://github.com/maraigue/devnull/commit/5c8d40b7e03c07a96ae647bc302eec74abfc224d#commitcomment-8379713
+
+=== 0.1.3 / 2019-05-24
+
+* Updated the document
