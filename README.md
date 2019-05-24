@@ -1,6 +1,6 @@
 # devnull
 
-Rubygems website :: https://rubygems.org/gems/devnull
+website :: http://rubygems.org/gems/devnull
 
 Source code / Documentation :: https://github.com/maraigue/devnull
 
