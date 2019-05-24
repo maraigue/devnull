@@ -11,12 +11,17 @@ require 'hoe'
 # Hoe.plugin :rcov
 # Hoe.plugin :rubyforge
 
+load "lib/devnull.rb"
+
 Hoe.spec 'devnull' do
   # HEY! If you fill these out in ~/.hoe_template/Rakefile.erb then
   # you'll never have to touch them again!
   # (delete this comment too, of course)
 
-  developer('H.Hiro (maraigue)', 'main@hhiro.net')
+  self.author = 'H.Hiro (maraigue)'
+  self.email = 'main@hhiro.net'
+  self.name = 'devnull'
+  self.version = DevNull::VERSION
   self.readme_file = "README.md"
   self.licenses = "MIT"
 
