@@ -17,6 +17,8 @@ Hoe.spec 'devnull' do
   # (delete this comment too, of course)
 
   developer('H.Hiro (maraigue)', 'main@hhiro.net')
+  self.readme_file = "README.md"
+  self.licenses = "MIT"
 
   # self.rubyforge_name = 'devnullx' # if different than 'devnull'
 end

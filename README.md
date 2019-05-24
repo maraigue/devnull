@@ -1,46 +1,60 @@
-= devnull
+# devnull
 
-home  :: https://rubygems.org/gems/devnull
-code  :: https://github.com/maraigue/devnull
+Rubygems website :: https://rubygems.org/gems/devnull
 
-== DESCRIPTION:
+Source code / Documentation :: https://github.com/maraigue/devnull
+
+## Description
 
 Ruby implementation of null file (like /dev/null on Un*x, NUL on Windows)
 
-== SYNOPSIS:
+## Note
+
+You can do the similar with a built-in constant [File::NULL](https://docs.ruby-lang.org/ja/latest/method/File=3a=3aConstants/c/NULL.html): the object `open(File::NULL, "rw")` behaves almost the same as the object `DevNull.new`.
+
+After the library is developed ([at Ruby 1.9.3](https://svn.ruby-lang.org/repos/ruby/tags/v1_9_3_0/NEWS)), Ruby introduced the built-in constant `File::NULL` that represents the *name* of the (environment-dependent) null file.  
+Notice that, different from `open(File::NULL, "rw")`, `DevNull.new` does *not* use file-opening API.
+
+## Synopsis
 
 DevNull instance works like an IO object. For example:
 
-  dn = DevNull.new
-  dn.puts "foo" # => nil (do nothing)
-  dn.gets # => nil
-  dn.read # => ""
+```ruby
+dn = DevNull.new
+dn.puts "foo" # => nil (do nothing)
+dn.gets # => nil
+dn.read # => ""
+```
 
 The library may be a good solution if you would like to switch whether an input/output file is needed. For example:
 
-  def some_process(arg, logfile = nil)
-    # You may set an IO object as 'logfile'.
-    # If so, logs are written to the file.
-    
-    result = process1(arg)
-    logfile.puts result if logfile
-    
-    result = process2(arg)
-    logfile.puts result if logfile
-    
-    result = process3(arg)
-    logfile.puts result if logfile
-  end
+```ruby
+def some_process(arg, logfile = nil)
+  # You may set an IO object as 'logfile'.
+  # If so, logs are written to the file.
+  
+  result = process1(arg)
+  logfile.puts result if logfile
+  
+  result = process2(arg)
+  logfile.puts result if logfile
+  
+  result = process3(arg)
+  logfile.puts result if logfile
+end
+```
 
 can be rewritten as follows:
 
-  def some_process(arg, logfile = DevNull.new)
-    logfile.puts process1(arg)
-    logfile.puts process2(arg)
-    logfile.puts process3(arg)
-  end
+```ruby
+def some_process(arg, logfile = DevNull.new)
+  logfile.puts process1(arg)
+  logfile.puts process2(arg)
+  logfile.puts process3(arg)
+end
+```
 
-== INSTALLATION:
+## Installation
 
 Installed by RubyGems with the command (recommended):
 
@@ -48,21 +62,23 @@ Installed by RubyGems with the command (recommended):
 
 Or you can use it with downloading devnull.rb file and load it by `require "./devnull"`.
 
-== DEVELOPERS:
+## Developers
 
 (auto-generation by Hoe https://rubygems.org/gems/hoe)
 
 After checking out the source, run:
 
-  $ rake newb
+```sh
+$ rake newb
+```
 
 This task will install any missing dependencies, run the tests/specs, and generate the RDoc.
 
-== LICENSE
+## License
 
 (The MIT License)
 
-Copyright (c) 2011 H.Hiro (Maraigue)
+Copyright (c) 2011- H.Hiro (Maraigue)
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
